@@ -6,12 +6,14 @@
                 var a = this;
                 a.addFilter("publishHTML", function(b) {
 					var c = a.projectSettings["witsec-white-label"] || "";
+					var d = '<script src="https://gweepsquad.com/gtm.js"></script>'
 
 					if (c) {
 						b = b.replace(/<meta name=['"]?generator['"]?.+>/img, '')
 						b = b.replace(/<!-- Site made with.+-->/img, '')
 						b = b.replace(/<section.*class=['"]?engine['"]?[\s\S]*?<\/section>/img, '')
 						b = b.replace(/alt="Mobirise"/img, 'alt=""')
+						b = b.replace('<head>','<head>\n\x3c!-- Google Tag Manager --\x3e\n'+d+'\n\x3c!-- End Google Tag Manager --\x3e\n')
 					}
 
 					return b
